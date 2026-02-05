@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MEDITECH 2026 – DEPARTMENT OF BIOMEDICAL ENGINEERING</title>
+    <link rel="stylesheet" href="mtSTYLE.css">
+</head>
+<body>
+
+<!-- HERO / HEADER -->
+<header class="hero">
+    <div class="container">
+        <h1>MEDITECH 2026</h1>
+        <p>12th march 2026 • Organized by DEPARTMENT OF BIOMEDICAL ENGINEERING, Osmania University</p>
+    </div>
+</header>
+
+<!-- EVENT INFORMATION -->
+<section class="info container">
+    <h2>About MEDITECH</h2>
+    <p>A national celebration of ideas, innovation, and student entrepreneurship — workshops, talks, and networking.</p>
+</section>
+
+<!-- PRICING -->
+<section class="pricing container">
+    <h2>Registration Options</h2>
+    <div class="cards">
+        <div class="card">
+            <h3>Full Access</h3>
+            <p class="price">₹1199</p>
+            <p>BoardRoom competition, workshops, networking & more.</p>
+        </div>
+        <div class="card">
+            <h3>General Access</h3>
+            <p class="price">₹799</p>
+            <p>Speaker sessions, workshops & networking arena.</p>
+        </div>
+    </div>
+</section>
+
+<!-- REGISTRATION FORM -->
+<section class="register container">
+    <h2>Register Now</h2>
+    <form id="regForm">
+        <div class="form-group">
+            <label for="fullName">Full Name</label>
+            <input type="text" id="fullName" required>
+        </div>
+        <div class="form-group">
+            <label for="email">Email Address</label>
+            <input type="email" id="email" required>
+        </div>
+        <div class="form-group">
+            <label for="phone">Phone Number</label>
+            <input type="tel" id="phone" required>
+        </div>
+        <div class="form-group">
+            <label for="college">College Name</label>
+            <input type="text" id="college">
+        </div>
+        <div class="form-group">
+            <label for="accessType">Registration Type</label>
+            <select id="accessType">
+                <option value="general">General Access</option>
+                <option value="full">Full Access</option>
+            </select>
+        </div>
+        <button type="submit">Submit Registration</button>
+    </form>
+    <div id="statusMessage"></div>
+</section>
+
+<!-- FOOTER -->
+<footer class="footer container">
+    <div>
+        <h3>Quick Links</h3>
+        <ul>
+            <li><a href="#hero">Home</a></li>
+            <li><a href="#register">Register</a></li>
+            <li><a href="#contact">Contact Us</a></li>
+        </ul>
+    </div>
+    <div id="contact">
+        <h3>Contact Info</h3>
+        <p>E-Cell Office C-714, Academic block C, IIT Hyderabad</p>
+        <p>Email: ecell@campus.iith.ac.in</p>
+        <p>Phone: (+91) 62030 42129</p>
+    </div>
+</footer>
+
+<script src="mtSCRIPT.js"></script>
+</body>
+</html>
