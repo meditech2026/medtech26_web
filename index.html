@@ -7,50 +7,45 @@
 
     <!-- CSS -->
     <link rel="stylesheet" href="style.css">
+
+    <!-- Supabase client library -->
+    <script src="https://unpkg.com/@supabase/supabase-js@2/dist/umd/supabase.min.js"></script>
 </head>
 <body>
 
 <!-- =====================
      HERO
 ===================== -->
-<section class="hero">
+<section class="hero" id="hero">
     <div class="container reveal">
         <img alt="Meditech 2k26 Logo" class="cs-logo" src="./src/assets/logo.png">
         <h1 class="gradient-text">MEDITECH 2K26</h1>
         <br>
         <h3>A National-Level Technical Symposium</h3>
         <h3>March 12 & 13 • Dept. of Biomedical Engineering, UCE(A), OU</h3>
-      <div class="cs-timer-wrapper">
-      <div id="countdown" style="display: flex; justify-content: center; margin-top: 20px; margin-bottom: 30px; padding: 20px; background: rgba(0, 0, 0, 0.3); border-radius: 15px; border: 1px solid rgba(139, 92, 246, 0.2); backdrop-filter: blur(5px);">
-    
-    <span style="margin: 0 10px; text-align: center;">
-      <span id="days" style="font-size: 2rem; font-weight: bold; display: block; color: rgb(103, 232, 249); text-shadow: 0 0 10px rgba(103, 232, 249, 0.5);">00</span>
-      <span style="font-size: 0.8rem; text-transform: uppercase; color: rgb(167, 139, 250);">days</span>
-    </span>
 
-    <span style="margin: 0 10px; text-align: center;">
-      <span id="hours" style="font-size: 2rem; font-weight: bold; display: block; color: rgb(103, 232, 249); text-shadow: 0 0 10px rgba(103, 232, 249, 0.5);">00</span>
-      <span style="font-size: 0.8rem; text-transform: uppercase; color: rgb(167, 139, 250);">hours</span>
-    </span>
+        <div id="countdown" class="countdown">
+            <span class="time-block">
+                <span id="days" class="time-value">00</span>
+                <span class="time-label">days</span>
+            </span>
+            <span class="time-block">
+                <span id="hours" class="time-value">00</span>
+                <span class="time-label">hours</span>
+            </span>
+            <span class="time-block">
+                <span id="minutes" class="time-value">00</span>
+                <span class="time-label">minutes</span>
+            </span>
+            <span class="time-block">
+                <span id="seconds" class="time-value">00</span>
+                <span class="time-label">seconds</span>
+            </span>
+        </div>
 
-    <span style="margin: 0 10px; text-align: center;">
-      <span id="minutes" style="font-size: 2rem; font-weight: bold; display: block; color: rgb(103, 232, 249); text-shadow: 0 0 10px rgba(103, 232, 249, 0.5);">00</span>
-      <span style="font-size: 0.8rem; text-transform: uppercase; color: rgb(167, 139, 250);">minutes</span>
-    </span>
-
-    <span style="margin: 0 10px; text-align: center;">
-      <span id="seconds" style="font-size: 2rem; font-weight: bold; display: block; color: rgb(103, 232, 249); text-shadow: 0 0 10px rgba(103, 232, 249, 0.5);">00</span>
-      <span style="font-size: 0.8rem; text-transform: uppercase; color: rgb(167, 139, 250);">seconds</span>
-    </span>
-
-  </div>
-</div>
-
-
-
-        <div style="margin-top:30px;">
-            <button>Register Now</button>
-            <button style="margin-left:15px;">View Competitions</button>
+        <div class="hero-buttons">
+            <a href="#register" class="primary-btn fancy-btn">Register Now</a>
+            <a href="#highlights" class="secondary-btn fancy-btn">View Competitions</a>
         </div>
     </div>
 </section>
@@ -58,7 +53,8 @@
 <!-- =====================
      ABOUT
 ===================== -->
-<section class="container reveal">
+<section class="container reveal" id="about">
+
     <h2>About the Event</h2>
     <p>
         MEDITECH 2K26 is a national-level technical symposium that integrates
@@ -70,7 +66,7 @@
 <!-- =====================
      HIGHLIGHTS
 ===================== -->
-<section class="container reveal">
+<section class="container reveal" id="highlights">
     <h2>Event Highlights</h2>
 
     <div class="cards">
@@ -104,7 +100,7 @@
 <!-- =====================
      STATS
 ===================== -->
-<section class="container reveal">
+<section class="container reveal" id="stats">
     <h2>At a Glance</h2>
 
     <div class="cards">
@@ -133,23 +129,45 @@
 <!-- =====================
      REGISTRATION
 ===================== -->
-<section class="container reveal">
+<section class="container reveal" id="register">
     <h2>Register Now</h2>
 
-    <form>
+    <form id="registrationForm">
+
         <div class="form-group">
             <label>Full Name</label>
-            <input type="text" required>
+            <input type="text" id="full_name" required>
         </div>
 
         <div class="form-group">
             <label>Email</label>
-            <input type="email" required>
+            <input type="email" id="email" required>
+        </div>
+
+        <div class="form-group">
+            <label>Phone Number</label>
+            <input type="text" id="phone_number" required>
+        </div>
+
+        <div class="form-group">
+            <label>College Name</label>
+            <input type="text" id="college_name" required>
+        </div>
+
+        <div class="form-group">
+            <label>Course Name</label>
+            <input type="text" id="course_name" required>
+        </div>
+
+        <div class="form-group">
+            <label>Number of Members</label>
+            <input type="number" id="number_of_members" min="1" max="3" value="1" required>
         </div>
 
         <div class="form-group">
             <label>Competition</label>
-            <select  class="gradient-text">
+            <select id="competition" required>
+                <option value="">Select Competition</option>
                 <option>Paper Presentation</option>
                 <option>Poster Presentation</option>
                 <option>MedExpo</option>
@@ -157,12 +175,14 @@
                 <option>Medi Quiz</option>
             </select>
         </div>
-         <div class="form-group">
-            <label>abstract</label>
-            <input type="text" required>
+
+        <div class="form-group">
+            <label>Abstract</label>
+            <textarea id="abstract" maxlength="1000" required></textarea>
         </div>
 
-        <button type="submit">Submit Registration</button>
+        <button type="submit" class="primary-btn">Submit Registration</button>
+
     </form>
 </section>
 
@@ -172,11 +192,8 @@
 <footer class="container">
     <p>© 2026 MEDITECH | Dept. of Biomedical Engineering, UCE(A), OU</p>
     <p>
-        meditech2026bme@gmail.com <br>
-        phone no. +91 95731 12497, +91 93815 82134 
-        <br>
-        <a href="https://www.instagram.com/meditech_ouce?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw==">Instagram</a>
-        <br>
+        Contact: meditech@ou.edu |
+        <a href="https://www.instagram.com/meditech_ouce/">Instagram</a> |
         <a href="https://www.linkedin.com/school/department-of-biomedical-engineering-uce-ou/">LinkedIn</a>
     </p>
 </footer>
@@ -185,11 +202,3 @@
 <script src="script.js"></script>
 </body>
 </html>
-
-
-
-
-
-
-
-
