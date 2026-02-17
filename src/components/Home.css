@@ -1,0 +1,206 @@
+/* Scoped to avoid global pollution if possible */
+
+.home-container {
+    min-height: 100vh;
+    /* Deep Purple Background matching Logo */
+    background-color: #000000;
+    background-image:
+        radial-gradient(circle at 50% 0%, #7e22ce 0%, transparent 50%),
+        /* Top Bright Purple */
+        radial-gradient(circle at 50% 100%, #be185d 0%, transparent 50%),
+        /* Bottom Magenta */
+        linear-gradient(to bottom, #1e1b4b, #000000);
+    /* Deep Blue-Purple Base */
+    background-attachment: fixed;
+    background-size: cover;
+
+    color: white;
+    text-align: center;
+    font-family: "Segoe UI", Arial, sans-serif;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+/* HERO */
+.home-container .hero {
+    padding: 60px 20px 40px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.hero-logo {
+    width: 200px;
+    /* Adjust size as needed */
+    height: 200px;
+    object-fit: cover;
+    margin-bottom: 20px;
+    filter: drop-shadow(0 0 15px rgba(139, 92, 246, 0.5));
+    animation: float 6s ease-in-out infinite;
+    border-radius: 50%;
+    /* Optional: If the white background is too strong, try blending */
+    /* mix-blend-mode: multiply; */
+}
+
+@keyframes float {
+    0% {
+        transform: translateY(0px);
+    }
+
+    50% {
+        transform: translateY(-10px);
+    }
+
+    100% {
+        transform: translateY(0px);
+    }
+}
+
+.home-container .hero h1 {
+    font-size: 64px;
+    font-weight: 800;
+    letter-spacing: 3px;
+    margin: 0;
+    /* Cyan gradient text */
+    background: linear-gradient(to right, #67e8f9, #2dd4bf);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    text-shadow: 0 0 20px rgba(45, 212, 191, 0.3);
+}
+
+.home-container .hero .date {
+    margin-top: 12px;
+    font-size: 20px;
+    opacity: 0.9;
+    color: #e9d5ff;
+    /* Light purple */
+}
+
+.home-container .hero .org {
+    margin-top: 10px;
+    font-size: 18px;
+    opacity: 0.8;
+    color: #c084fc;
+    /* Purple accent */
+}
+
+/* OPTIONS */
+.home-container .section {
+    padding: 20px 20px 90px;
+}
+
+.section-title {
+    font-size: 28px;
+    margin-bottom: 40px;
+    color: #e9d5ff;
+    /* Light Purple */
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    text-shadow: 0 0 10px rgba(139, 92, 246, 0.4);
+    position: relative;
+    display: inline-block;
+}
+
+.section-title::after {
+    content: '';
+    display: block;
+    width: 60px;
+    height: 3px;
+    background: #67e8f9;
+    /* Cyan underline */
+    margin: 10px auto 0;
+    border-radius: 2px;
+    box-shadow: 0 0 10px #67e8f9;
+}
+
+.home-container .container {
+    display: flex;
+    justify-content: center;
+    gap: 28px;
+    flex-wrap: wrap;
+}
+
+.home-container .card {
+    width: 290px;
+    padding: 30px 25px;
+    border-radius: 16px;
+    /* Stronger Glassmorphism */
+    background: rgba(255, 255, 255, 0.03);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    /* Subtle white stroke */
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.3);
+
+    transition: all 0.4s ease;
+    text-align: left;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+.home-container .card:hover {
+    transform: translateY(-8px) scale(1.02);
+    box-shadow: 0 0 30px rgba(103, 232, 249, 0.25);
+    /* Cyan glow */
+    border-color: rgba(103, 232, 249, 0.5);
+}
+
+.home-container .card h2 {
+    font-size: 24px;
+    margin-bottom: 12px;
+    margin-top: 0;
+    color: #67e8f9;
+    /* Cyan */
+    text-shadow: 0 0 5px rgba(103, 232, 249, 0.3);
+}
+
+.home-container .card p {
+    font-size: 14px;
+    opacity: 0.9;
+    margin-bottom: 22px;
+    color: #f1f5f9;
+}
+
+.home-container .btn {
+    padding: 12px 26px;
+    /* Cyan to Blue Gradient */
+    background: linear-gradient(to right, #06b6d4, #3b82f6);
+    color: white;
+    font-weight: 700;
+    border: none;
+    border-radius: 30px;
+    cursor: pointer;
+    font-size: 1rem;
+    transition: all 0.3s ease;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    /* Outer glow */
+    box-shadow: 0 0 15px rgba(6, 182, 212, 0.3);
+}
+
+.home-container .btn:hover {
+    box-shadow: 0 0 25px rgba(6, 182, 212, 0.7);
+    transform: translateY(-2px);
+    filter: brightness(1.1);
+}
+
+
+
+.footer {
+    margin-top: auto;
+    padding: 20px;
+    font-size: 14px;
+    color: #94a3b8;
+    background: rgba(0, 0, 0, 0.6);
+    backdrop-filter: blur(5px);
+    border-top: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+/* RESPONSIVE */
+@media(max-width: 768px) {
+    .home-container .hero h1 {
+        font-size: 42px;
+    }
+}
