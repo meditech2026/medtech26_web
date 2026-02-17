@@ -1,0 +1,299 @@
+/* =====================
+   ROOT & RESET
+===================== */
+:root {
+    --bg-dark: #0b0f1a;
+    --bg-card: rgba(255, 255, 255, 0.08);
+    --accent: #ff4d4d;
+    --accent-2: #4da3ff;
+    --text-main: #ffffff;
+    --text-muted: #b5b5c3;
+    --radius: 14px;
+}
+.cs-logo {
+  width:120px;
+  height:120px;
+  object-fit:cover;
+  border-radius:50%;
+  margin-bottom:30px;
+  box-shadow:0 0 20px #67e8f966;
+  animation:pulseLogo 3s infinite;
+}
+
+.logo {
+  height: 6em;
+  padding: 1.5em;
+  will-change: filter;
+  transition: filter 300ms;
+}
+.logo:hover {
+  filter: drop-shadow(0 0 2em #646cffaa);
+}
+.logo.react:hover {
+  filter: drop-shadow(0 0 2em #61dafbaa);
+}
+/* =====================
+   NAVBAR (MATCHING THEME)
+===================== */
+.navbar {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 1000;
+    background: rgba(11, 15, 26, 0.65);
+    backdrop-filter: blur(16px);
+    border-bottom: 1px solid rgba(255,255,255,0.08);
+}
+
+.nav-inner {
+    width: min(1100px, 90%);
+    margin: auto;
+    padding: 16px 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.nav-logo {
+    font-size: 1.2rem;
+    font-weight: 600;
+    letter-spacing: 2px;
+    background: linear-gradient(90deg, var(--accent), var(--accent-2));
+    background-clip: text;
+    -webkit-background-clip: text;
+    color: transparent;
+}
+
+.nav-links {
+    list-style: none;
+    display: flex;
+    gap: 28px;
+}
+
+.nav-links a {
+    color: var(--text-main);
+    text-decoration: none;
+    font-size: 0.95rem;
+    position: relative;
+    transition: color 0.3s ease;
+}
+
+/* underline animation */
+.nav-links a::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: -6px;
+    width: 0;
+    height: 2px;
+    background: linear-gradient(90deg, var(--accent), var(--accent-2));
+    transition: width 0.3s ease;
+}
+
+.nav-links a:hover::after {
+    width: 100%;
+}
+
+.nav-links a:hover {
+    color: var(--accent-2);
+}
+
+/* OFFSET FOR FIXED NAVBAR */
+.hero {
+    padding-top: 100px;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: "Segoe UI", system-ui, sans-serif;
+    background: radial-gradient(circle at top, #11172a, #060911);
+    color: var(--text-main);
+}
+
+/* =====================
+   LAYOUT
+===================== */
+.container {
+    width: min(1100px, 90%);
+    margin: auto;
+    padding: 60px 0;
+}
+
+/* =====================
+   HERO
+===================== */
+.hero {
+    min-height: 100vh;
+    display: grid;
+    place-items: center;
+    text-align: center;
+    background:
+        radial-gradient(circle at 20% 20%, rgba(77,163,255,0.15), transparent 40%),
+        radial-gradient(circle at 80% 80%, rgba(255,77,77,0.15), transparent 40%);
+}
+
+.hero h1 {
+    font-size: clamp(3rem, 6vw, 4.5rem);
+    letter-spacing: 2px;
+    text-transform: uppercase;
+}
+
+.hero p {
+    margin-top: 15px;
+    font-size: 1.1rem;
+    color: var(--text-muted);
+}
+
+/* =====================
+   SECTION HEADERS
+===================== */
+section h2 {
+    font-size: 2.2rem;
+    margin-bottom: 15px;
+}
+
+section p {
+    max-width: 700px;
+    color: var(--text-muted);
+}
+
+/* =====================
+   PRICING CARDS
+===================== */
+.cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 30px;
+    margin-top: 40px;
+}
+
+.card {
+    background: var(--bg-card);
+    backdrop-filter: blur(14px);
+    border-radius: var(--radius);
+    padding: 30px;
+    border: 1px solid rgba(255,255,255,0.1);
+    transition: transform 0.4s ease, box-shadow 0.4s ease;
+}
+
+.card:hover {
+    transform: translateY(-12px);
+    box-shadow: 0 20px 40px rgba(99, 2, 2, 0.689);
+}
+
+.card h3 {
+    font-size: 1.4rem;
+}
+.gradient-text {
+    background: linear-gradient(90deg, #ff4d4d, #4da3ff);
+    background-clip: text;          /* standard */
+    -webkit-background-clip: text;  /* chrome/safari */
+    color: transparent;             /* fallback */
+}
+
+.price {
+    font-size: 2.2rem;
+    margin: 15px 0;
+    background: linear-gradient(90deg, var(--accent), var(--accent-2));
+    background-clip: text;
+    -webkit-background-clip: text;
+    color: transparent;
+}
+
+/* =====================
+   FORM
+===================== */
+form {
+    
+    margin-top: 40px;
+    display: grid;
+    gap: 20px;
+    max-width: 500px;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+}
+
+label {
+    margin-bottom: 6px;
+    font-size: 0.9rem;
+}
+
+input, select {
+    padding: 12px;
+    background: rgba(255,255,255,0.08);
+    border: 1px solid rgba(255,255,255,0.15);
+    color: rgb(255, 255, 255);
+    border-radius: 8px;
+    outline: none;
+}
+
+input:focus, select:focus {
+    border-color: var(--accent-2);
+}
+
+/* =====================
+   BUTTON
+===================== */
+button {
+    margin-top: 10px;
+    padding: 14px;
+    font-size: 1rem;
+    border-radius: 10px;
+    border: none;
+    cursor: pointer;
+    color: white;
+    background: linear-gradient(90deg, var(--accent), var(--accent-2));
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+button:hover {
+    transform: scale(1.03);
+    box-shadow: 0 12px 30px rgba(77,163,255,0.4);
+}
+
+/* =====================
+   FOOTER
+===================== */
+footer {
+    padding: 40px 0;
+    border-top: 1px solid rgba(255,255,255,0.1);
+    display: grid;
+    gap: 30px;
+}
+
+footer a {
+    color: var(--accent-2);
+    text-decoration: none;
+}
+
+/* =====================
+   ANIMATION (JS hooks)
+===================== */
+.reveal {
+    opacity: 0;
+    transform: translateY(40px);
+    transition: 0.8s ease;
+}
+
+.reveal.active {
+    opacity: 1;
+    transform: translateY(0);
+}
+.gradient-text {
+    background: linear-gradient(90deg, #ff4d4d, #4da3ff);
+    background-clip: text;
+    -webkit-background-clip: text;
+    color: transparent;
+}
