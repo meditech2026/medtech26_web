@@ -1,7 +1,22 @@
-const supabaseUrl = "https://rijjahgepttiywcttrnu.supabase.co";
-const supabaseKey = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InJpamphaGdlcHR0aXl3Y3R0cm51Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzEzMzgwMTUsImV4cCI6MjA4NjkxNDAxNX0.9eYFh7FumMs86l57sHh5I1E-3D1C3AuwHeGYxaDnfXs";
+/* =========================
+   SUPABASE INITIALIZATION
+========================= */
 
-const supabase = window.supabase.createClient(supabaseUrl, supabaseKey);
+const supabaseUrl = "https://rijjahgepttiywcttrnu.supabase.co";
+const supabaseKey = "YOUR_PUBLIC_ANON_KEY_HERE";  // Keep this as anon public key
+
+let supabaseClient = null;
+
+// Ensure Supabase library loaded before using it
+if (window.supabase && window.supabase.createClient) {
+  supabaseClient = window.supabase.createClient(supabaseUrl, supabaseKey);
+} else {
+  console.error("Supabase library failed to load.");
+}
+
+/* =========================
+   COUNTDOWN TIMER
+========================= */
 
 // Set target date: March 12, 2026 10:00 AM
 const targetDate = new Date("March 12, 2026 10:00:00").getTime();
@@ -37,11 +52,17 @@ function updateCountdown() {
 setInterval(updateCountdown, 1000);
 updateCountdown();
 
-/* =====================
+/* =========================
    SCROLL REVEAL
-===================== */
+========================= */
+
 const reveals = document.querySelectorAll(".reveal");
 
+function activateReveal() {
+  reveals.forEach(el => el.classList.add("active"));
+}
+
+// Use IntersectionObserver if supported
 if ("IntersectionObserver" in window) {
   const observer = new IntersectionObserver(
     entries => {
@@ -57,26 +78,13 @@ if ("IntersectionObserver" in window) {
 
   reveals.forEach(el => observer.observe(el));
 } else {
-  function revealOnScroll() {
-    const windowHeight = window.innerHeight;
-
-    reveals.forEach(el => {
-      const elementTop = el.getBoundingClientRect().top;
-      const revealPoint = 100;
-
-      if (elementTop < windowHeight - revealPoint) {
-        el.classList.add("active");
-      }
-    });
-  }
-
-  window.addEventListener("scroll", revealOnScroll);
-  window.addEventListener("load", revealOnScroll);
+  activateReveal();
 }
 
-/* =====================
+/* =========================
    BUTTON MICRO-INTERACTION
-===================== */
+========================= */
+
 document.querySelectorAll(".fancy-btn").forEach(button => {
   button.addEventListener("mousemove", event => {
     const rect = button.getBoundingClientRect();
@@ -92,14 +100,20 @@ document.querySelectorAll(".fancy-btn").forEach(button => {
   });
 });
 
-/* =====================
+/* =========================
    REGISTRATION FORM
-===================== */
+========================= */
+
 const registrationForm = document.getElementById("registrationForm");
 
 if (registrationForm) {
   registrationForm.addEventListener("submit", async function (e) {
     e.preventDefault();
+
+    if (!supabaseClient) {
+      alert("Database connection unavailable.");
+      return;
+    }
 
     const data = {
       full_name: document.getElementById("full_name").value.trim(),
@@ -107,7 +121,10 @@ if (registrationForm) {
       phone_number: document.getElementById("phone_number").value.trim(),
       college_name: document.getElementById("college_name").value.trim(),
       course_name: document.getElementById("course_name").value.trim(),
-      number_of_members: parseInt(document.getElementById("number_of_members").value, 10),
+      number_of_members: parseInt(
+        document.getElementById("number_of_members").value,
+        10
+      ),
       competition: document.getElementById("competition").value,
       abstract: document.getElementById("abstract").value.trim()
     };
@@ -117,14 +134,21 @@ if (registrationForm) {
       return;
     }
 
-    const { error } = await supabase.from("registrations_1").insert([data]);
+    try {
+      const { error } = await supabaseClient
+        .from("registrations_1")
+        .insert([data]);
 
-    if (error) {
-      console.error(error);
-      alert("Registration failed.");
-    } else {
-      alert("Registration successful.");
-      registrationForm.reset();
+      if (error) {
+        console.error(error);
+        alert("Registration failed.");
+      } else {
+        alert("Registration successful.");
+        registrationForm.reset();
+      }
+    } catch (err) {
+      console.error(err);
+      alert("Unexpected error occurred.");
     }
   });
 }
