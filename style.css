@@ -128,17 +128,24 @@ section p {
 }
 
 .card {
+  position: relative;
   background: var(--bg-card);
   backdrop-filter: blur(14px);
   border-radius: var(--radius);
   padding: 30px;
   border: 1px solid rgba(255,255,255,0.1);
-  transition: transform 0.4s ease, box-shadow 0.4s ease;
+  transition: transform 0.4s ease, box-shadow 0.4s ease, background 0.3s ease;
+  z-index: 0;
 }
 
 .card:hover {
   transform: translateY(-12px);
-  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5);
+  /* base shadow + red glow */
+  box-shadow:
+    0 20px 40px rgba(0, 0, 0, 0.5),
+    0 0 40px rgba(255, 77, 77, 0.18);
+  /* slight red tint to the card background */
+  background: linear-gradient(180deg, rgba(255,77,77,0.035), var(--bg-card));
 }
 
 .card h3 {
@@ -297,4 +304,5 @@ footer a {
 .reveal.active {
   opacity: 1;
   transform: translateY(0);
+
 }
