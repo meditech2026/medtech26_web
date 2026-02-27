@@ -3,22 +3,17 @@
 ========================= */
 
 const supabaseUrl = "https://rijjahgepttiywcttrnu.supabase.co";
-const supabaseKey = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InJpamphaGdlcHR0aXl3Y3R0cm51Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzEzMzgwMTUsImV4cCI6MjA4NjkxNDAxNX0.9eYFh7FumMs86l57sHh5I1E-3D1C3AuwHeGYxaDnfXs";  // Keep this as anon public key
+const supabaseKey = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InJpamphaGdlcHR0aXl3Y3R0cm51Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzEzMzgwMTUsImV4cCI6MjA4NjkxNDAxNX0.9eYFh7FumMs86l57sHh5I1E-3D1C3AuwHeGYxaDnfXs";
 
-let supabaseClient = null;
-
-// Ensure Supabase library loaded before using it
-if (window.supabase && window.supabase.createClient) {
-  supabaseClient = window.supabase.createClient(supabaseUrl, supabaseKey);
-} else {
-  console.error("Supabase library failed to load.");
-}
+const supabaseClient = window.supabase.createClient(
+  supabaseUrl,
+  supabaseKey
+);
 
 /* =========================
    COUNTDOWN TIMER
 ========================= */
 
-// Set target date: March 12, 2026 10:00 AM
 const targetDate = new Date("March 12, 2026 10:00:00").getTime();
 
 function updateCountdown() {
@@ -53,54 +48,6 @@ setInterval(updateCountdown, 1000);
 updateCountdown();
 
 /* =========================
-   SCROLL REVEAL
-========================= */
-
-const reveals = document.querySelectorAll(".reveal");
-
-function activateReveal() {
-  reveals.forEach(el => el.classList.add("active"));
-}
-
-// Use IntersectionObserver if supported
-if ("IntersectionObserver" in window) {
-  const observer = new IntersectionObserver(
-    entries => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add("active");
-          observer.unobserve(entry.target);
-        }
-      });
-    },
-    { threshold: 0.15 }
-  );
-
-  reveals.forEach(el => observer.observe(el));
-} else {
-  activateReveal();
-}
-
-/* =========================
-   BUTTON MICRO-INTERACTION
-========================= */
-
-document.querySelectorAll(".fancy-btn").forEach(button => {
-  button.addEventListener("mousemove", event => {
-    const rect = button.getBoundingClientRect();
-    const x = event.clientX - rect.left;
-    const y = event.clientY - rect.top;
-    button.style.setProperty("--x", `${x}px`);
-    button.style.setProperty("--y", `${y}px`);
-  });
-
-  button.addEventListener("mouseleave", () => {
-    button.style.removeProperty("--x");
-    button.style.removeProperty("--y");
-  });
-});
-
-/* =========================
    REGISTRATION FORM
 ========================= */
 
@@ -110,29 +57,26 @@ if (registrationForm) {
   registrationForm.addEventListener("submit", async function (e) {
     e.preventDefault();
 
-    if (!supabaseClient) {
-      alert("Database connection unavailable.");
+    const numberOfMembers = parseInt(
+      document.getElementById("number_of_members").value,
+      10
+    );
+
+    if (isNaN(numberOfMembers) || numberOfMembers < 1) {
+      alert("Invalid number of members.");
       return;
     }
 
     const data = {
       full_name: document.getElementById("full_name").value.trim(),
       email: document.getElementById("email").value.trim(),
-      phone_number: document.getElementById("phone_number").value.trim(),
+      phone: document.getElementById("phone_number").value.trim(), // must match DB column
       college_name: document.getElementById("college_name").value.trim(),
       course_name: document.getElementById("course_name").value.trim(),
-      number_of_members: parseInt(
-        document.getElementById("number_of_members").value,
-        10
-      ),
+      number_of_members: numberOfMembers,
       competition: document.getElementById("competition").value,
       abstract: document.getElementById("abstract").value.trim()
     };
-
-    if (isNaN(data.number_of_members) || data.number_of_members < 1) {
-      alert("Invalid number of members.");
-      return;
-    }
 
     try {
       const { error } = await supabaseClient
@@ -140,20 +84,17 @@ if (registrationForm) {
         .insert([data]);
 
       if (error) {
-        console.error(error);
-        alert("Registration failed.");
-      } else {
-        alert("Registration successful.");
-        registrationForm.reset();
+        console.error("Insert Error:", error);
+        alert(error.message);   // show real DB error
+        return;
       }
+
+      alert("Registration successful.");
+      registrationForm.reset();
+
     } catch (err) {
-      console.error(err);
+      console.error("Unexpected Error:", err);
       alert("Unexpected error occurred.");
     }
   });
 }
-
-
-
-
-
