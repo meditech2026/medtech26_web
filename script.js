@@ -2,45 +2,14 @@
    SUPABASE INITIALIZATION
 ========================= */
 
- const response = await fetch(
-    "https://rijjahgepttiywcttrnu.functions.supabase.co/register",
-    {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json"
-      },
-      body: JSON.stringify({
-        full_name: document.getElementById("full_name").value.trim(),
-        email: document.getElementById("email").value.trim(),
-        phone: document.getElementById("phone_number").value.trim(),
-        college_name: document.getElementById("college_name").value.trim(),
-        course_name: document.getElementById("course_name").value.trim(),
-        number_of_members: parseInt(
-          document.getElementById("number_of_members").value,
-          10
-        ),
-        competition: document.getElementById("competition").value,
-        abstract: document.getElementById("abstract").value.trim()
-      })
-    }
-  );
+const supabaseUrl = "https://rijjahgepttiywcttrnu.supabase.co";
+const supabaseKey = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InJpamphaGdlcHR0aXl3Y3R0cm51Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzEzMzgwMTUsImV4cCI6MjA4NjkxNDAxNX0.9eYFh7FumMs86l57sHh5I1E-3D1C3AuwHeGYxaDnfXs";  // Keep this as anon public key
 
-  const result = await response.json();
+let supabaseClient = null;
 
-  console.log("Status:", response.status);
-  console.log("Response:", result);
-
-  if (!response.ok) {
-    alert("Error: " + result.error);
-    return;
-  }
-
-  alert("Registration successful.");
-  registrationForm.reset();
-
-} catch (err) {
-  console.error(err);
-  alert("Network error.");
+// Ensure Supabase library loaded before using it
+if (window.supabase && window.supabase.createClient) {
+  supabaseClient = window.supabase.createClient(supabaseUrl, supabaseKey);
 } else {
   console.error("Supabase library failed to load.");
 }
@@ -183,8 +152,6 @@ if (registrationForm) {
     }
   });
 }
-
-
 
 
 
