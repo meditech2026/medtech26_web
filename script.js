@@ -70,13 +70,12 @@ if (registrationForm) {
 const data = {
   full_name: document.getElementById("full_name").value.trim(),
   email: document.getElementById("email").value.trim(),
-  phone_number: document.getElementById("phone_number").value.trim(), // FIXED
+  phone_number: document.getElementById("phone_number").value.trim(),
   college_name: document.getElementById("college_name").value.trim(),
   number_of_members: numberOfMembers,
-  competition: document.getElementById("competition").value,
+  competition: document.getElementById("competition").value.trim(),
   abstract: document.getElementById("abstract").value.trim()
 };
-
     try {
       const { error } = await supabaseClient
         .from("registrations_1")
@@ -97,4 +96,5 @@ const data = {
     }
   });
 }
+
 
