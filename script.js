@@ -2,7 +2,7 @@
    SUPABASE INITIALIZATION
 ========================= */
 
-const supabaseUrl = "https://rijjahgepttiywcttrnu.supabase.co";
+const supabaseUrl = "https://rijjahgepttiywcttrnu.supabase.co/functions/v1/register";
 const supabaseKey = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InJpamphaGdlcHR0aXl3Y3R0cm51Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzEzMzgwMTUsImV4cCI6MjA4NjkxNDAxNX0.9eYFh7FumMs86l57sHh5I1E-3D1C3AuwHeGYxaDnfXs";  // Keep this as anon public key
 
 let supabaseClient = null;
@@ -152,6 +152,7 @@ if (registrationForm) {
     }
   });
 }
+
 
 
 
