@@ -374,4 +374,55 @@ footer a {
   transform: translateY(0);
 
 }
+.fees-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 20px;
+  font-size: 0.95rem;
+}
+
+.fees-table caption {
+  caption-side: top;
+  margin-bottom: 8px;
+  color: var(--text-muted);
+}
+
+.fees-table thead {
+  background: linear-gradient(90deg, rgba(255,77,77,0.2), rgba(77,163,255,0.2));
+}
+
+.fees-table th,
+.fees-table td {
+  padding: 10px 14px;
+  text-align: left;
+}
+
+.fees-table th {
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  font-size: 0.8rem;
+  color: var(--text-main);
+  border-bottom: 1px solid rgba(255,255,255,0.25);
+}
+
+.fees-table tbody tr:nth-child(odd) {
+  background: rgba(255,255,255,0.03);
+}
+
+.fees-table tbody tr:nth-child(even) {
+  background: rgba(255,255,255,0.06);
+}
+
+.fees-table tbody tr:hover {
+  background: rgba(77,163,255,0.18);
+}
+
+.fees-table td:last-child {
+  text-align: right;
+  font-weight: 600;
+  background: linear-gradient(90deg, var(--accent), var(--accent-2));
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
 
