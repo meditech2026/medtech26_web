@@ -67,16 +67,15 @@ if (registrationForm) {
       return;
     }
 
-    const data = {
-      full_name: document.getElementById("full_name").value.trim(),
-      email: document.getElementById("email").value.trim(),
-      phone: document.getElementById("phone_number").value.trim(), // must match DB column
-      college_name: document.getElementById("college_name").value.trim(),
-      course_name: document.getElementById("course_name").value.trim(),
-      number_of_members: numberOfMembers,
-      competition: document.getElementById("competition").value,
-      abstract: document.getElementById("abstract").value.trim()
-    };
+const data = {
+  full_name: document.getElementById("full_name").value.trim(),
+  email: document.getElementById("email").value.trim(),
+  phone_number: document.getElementById("phone_number").value.trim(), // FIXED
+  college_name: document.getElementById("college_name").value.trim(),
+  number_of_members: numberOfMembers,
+  competition: document.getElementById("competition").value,
+  abstract: document.getElementById("abstract").value.trim()
+};
 
     try {
       const { error } = await supabaseClient
@@ -98,3 +97,4 @@ if (registrationForm) {
     }
   });
 }
+
