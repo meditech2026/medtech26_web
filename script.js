@@ -77,6 +77,7 @@ const data = {
   competition: document.getElementById("competition").value.trim(),
   abstract: document.getElementById("abstract").value.trim()
 };
+     console.log("Data being sent:", data);
     try {
       const { error } = await supabaseClient
         .from("registrations_1")
@@ -97,6 +98,7 @@ const data = {
     }
   });
 }
+
 
 
 
