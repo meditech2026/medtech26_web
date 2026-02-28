@@ -15,7 +15,6 @@
         :root {
             --heading-font: 'League Spartan', sans-serif;
             --body-font: 'Inter', sans-serif;
-            /* Theme matched to uploaded image colors */
             --primary-color: #a21caf; 
             --secondary-color: #4338ca;
             --accent-glow: rgba(162, 28, 175, 0.3);
@@ -83,16 +82,28 @@
             transition: width 1s linear, background 0.5s ease;
         }
 
+        /* Fixed Infinite Slider Logic */
         @keyframes scroll {
             0% { transform: translateX(0); }
             100% { transform: translateX(-50%); }
         }
+        .slider-container {
+            overflow: hidden;
+            width: 100%;
+            mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
+            -webkit-mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
+        }
         .infinite-slider {
             display: flex;
-            width: fit-content;
-            animation: scroll 10s linear infinite;
+            width: max-content;
+            animation: scroll 40s linear infinite;
+            will-change: transform;
         }
         .infinite-slider:hover { animation-play-state: paused; }
+        .infinite-slider img {
+            flex-shrink: 0;
+            pointer-events: none;
+        }
 
         .glass-card {
             background: rgba(30, 41, 59, 0.7);
@@ -196,7 +207,7 @@
                 MEDITECH 2K26
             </h1>
             
-            <p class="text-xl md:text-2xl text-slate-300 max-w-2xl mx-auto mb-8">
+            <p class="text-xl md:text-2xl text-slate-300 max-w-2xl mx-auto mb-8 font-medium">
                 Where clinical expertise meets technological innovation. Join us for the biggest medical technology symposium of the year.
             </p>
 
@@ -243,14 +254,13 @@
     <!-- Events Section -->
     <section id="events" class="py-24 bg-slate-900/50">
         <div class="container mx-auto px-6 text-center mb-16">
-            <h2 class="text-5xl font-bold mb-4 tracking-tight uppercase text-white">Our Flagship Events</h2>
+            <h2 class="text-5xl font-bold mb-4 tracking-tight uppercase text-white text-center text-white">Event Highlights</h2>
             <div class="h-1 w-24 bg-theme mx-auto rounded-full mb-8"></div>
-            <p class="text-slate-400 italic mb-12">Click on an event below to open the registration form.</p>
         </div>
 
         <div class="container mx-auto px-6">
             
-            <!-- Pass Selection Section (Informational Only) -->
+            <!-- Pass Selection Section (Informational Only - AT TOP) -->
             <div id="pricing" class="max-w-5xl mx-auto py-12 px-6 glass-card rounded-3xl border border-cyan-500/20 mb-20 text-center">
                 <h2 class="text-3xl font-bold mb-8 uppercase tracking-widest text-cyan-400">Symposium Passes</h2>
                 <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
@@ -280,7 +290,7 @@
                         <img src="meditech/assets/images.jpg" alt="Paper" class="w-full h-full object-cover group-hover:scale-110 transition duration-500" onerror="this.src='https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?w=400'">
                     </div>
                     <div class="p-6 text-left">
-                        <h3 class="text-xl font-bold mb-2 text-cyan-300">Paper Presentation</h3>
+                        <h3 class="text-xl font-bold mb-2 text-cyan-300 uppercase">Paper Presentation</h3>
                         <p class="text-slate-400 text-sm mb-4 leading-relaxed">Present research papers in Biomedical Engineering.</p>
                         <button onclick="openRegistration('Paper Presentation')" class="w-full bg-slate-800 hover:bg-theme hover:text-slate-950 text-cyan-400 font-bold py-2 rounded-lg transition-all border border-cyan-400/30">Register Now</button>
                     </div>
@@ -288,10 +298,10 @@
 
                 <div class="glass-card rounded-2xl overflow-hidden group hover:neon-border transition duration-500">
                     <div class="h-48 overflow-hidden relative">
-                        <img src="meditech//assets/769015_971e8cc6a1f9453098f84a75563f027c~mv2.png" alt="Poster" class="w-full h-full object-cover group-hover:scale-110 transition duration-500" onerror="this.src='https://images.unsplash.com/photo-1542744173-8e7e53415bb0?w=400'">
+                        <img src="meditech/assets/769015_971e8cc6a1f9453098f84a75563f027c~mv2.png" alt="Poster" class="w-full h-full object-cover group-hover:scale-110 transition duration-500" onerror="this.src='https://images.unsplash.com/photo-1542744173-8e7e53415bb0?w=400'">
                     </div>
                     <div class="p-6 text-left">
-                        <h3 class="text-xl font-bold mb-2 text-cyan-300">Poster Presentation</h3>
+                        <h3 class="text-xl font-bold mb-2 text-cyan-300 uppercase">Poster Presentation</h3>
                         <p class="text-slate-400 text-sm mb-4 leading-relaxed">Visualize your medical innovations through posters.</p>
                         <button onclick="openRegistration('Poster Presentation')" class="w-full bg-slate-800 hover:bg-theme hover:text-slate-950 text-cyan-400 font-bold py-2 rounded-lg transition-all border border-cyan-400/30">Register Now</button>
                     </div>
@@ -302,7 +312,7 @@
                         <img src="meditech/assets/gettyimages-88313003-612x612.jpg" alt="Model" class="w-full h-full object-cover group-hover:scale-110 transition duration-500" onerror="this.src='https://images.unsplash.com/photo-1581093588401-fbb62a02f120?w=400'">
                     </div>
                     <div class="p-6 text-left">
-                        <h3 class="text-xl font-bold mb-2 text-cyan-300">Model Presentation</h3>
+                        <h3 class="text-xl font-bold mb-2 text-cyan-300 uppercase">Model Presentation</h3>
                         <p class="text-slate-400 text-sm mb-4 leading-relaxed">Showcase working prototypes and models.</p>
                         <button onclick="openRegistration('Model Presentation')" class="w-full bg-slate-800 hover:bg-theme hover:text-slate-950 text-cyan-400 font-bold py-2 rounded-lg transition-all border border-cyan-400/30">Register Now</button>
                     </div>
@@ -344,7 +354,7 @@
         <div class="glass-card w-full max-w-4xl max-h-[90vh] rounded-3xl overflow-hidden flex flex-col border border-theme/30 shadow-2xl">
             <div class="p-6 border-b border-slate-800 flex justify-between items-center bg-slate-900/50">
                 <div>
-                    <h2 id="modal-title" class="text-2xl font-bold text-theme uppercase tracking-widest">Registration</h2>
+                    <h2 id="modal-title" class="text-2xl font-bold text-theme uppercase tracking-widest text-white">Registration</h2>
                     <p class="text-slate-400 text-xs mt-1 uppercase tracking-tighter">Meditech 2k26 Symposium Pass</p>
                 </div>
                 <button onclick="closeModal()" class="text-slate-400 hover:text-white transition-all text-2xl px-2">&times;</button>
@@ -391,7 +401,7 @@
                         <div class="p-4 bg-slate-800/30 rounded-2xl border border-slate-700 flex flex-col items-center">
                             <div id="payment-amt-text" class="text-4xl font-black text-theme mb-4 tracking-tighter">₹300</div>
                             
-                            <img id="qr-img" src="logo (1).jpg" alt="QR" class="w-32 h-32 bg-white p-2 rounded-lg mb-4 object-contain shadow-xl" onerror="this.src='https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=upi://pay?pa=meditech2026@upi&pn=Meditech&am=300'">
+                            <img id="qr-img" src="assets/logo (1).png" alt="QR" class="w-32 h-32 bg-white p-2 rounded-lg mb-4 object-contain shadow-xl" onerror="this.src='https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=upi://pay?pa=meditech2026@upi&pn=Meditech&am=300'">
                             
                             <p class="text-[9px] text-slate-500 text-center uppercase mb-4 tracking-widest font-bold">Scan QR & Upload Screenshot</p>
                             
@@ -418,42 +428,45 @@
         </div>
     </div>
 
-    <!-- Gallery Section -->
+    <!-- Gallery Section (Correctly Sequenced Infinite Loop) -->
     <section id="previous" class="py-24 overflow-hidden">
         <div class="container mx-auto px-6 text-center mb-16">
             <h2 class="text-4xl font-bold mb-4 uppercase text-white">Gallery of Excellence</h2>
             <p class="text-slate-400 italic font-medium">Moments that defined our journey since inception.</p>
         </div>
-        <div class="infinite-slider py-10">
-            <img src="meditech/assets/1.png" class="h-64 mx-4 rounded-xl object-cover shadow-2xl" alt="1" onerror="this.src='https://images.unsplash.com/photo-1576091160550-2173dba999ef?w=400'">
-            <img src="meditech/assets/2.jpeg" class="h-64 mx-4 rounded-xl object-cover shadow-2xl" alt="2" onerror="this.src='https://images.unsplash.com/photo-1516321497487-e288fb19713f?w=400'">
-            <img src="meditech/assets/3.jpeg" class="h-64 mx-4 rounded-xl object-cover shadow-2xl" alt="3" onerror="this.src='https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?w=400'">
-            <img src="meditech/assets/4.jpeg" class="h-64 mx-4 rounded-xl object-cover shadow-2xl" alt="4" onerror="this.src='https://images.unsplash.com/photo-1581093588401-fbb62a02f120?w=400'">
-             <img src="meditech/assets/5.jpeg" class="h-64 mx-4 rounded-xl object-cover shadow-2xl" alt="4" onerror="this.src='https://images.unsplash.com/photo-1581093588401-fbb62a02f120?w=400'">
-             <img src="meditech/assets/6.jpeg" class="h-64 mx-4 rounded-xl object-cover shadow-2xl" alt="4" onerror="this.src='https://images.unsplash.com/photo-1581093588401-fbb62a02f120?w=400'">
-             <img src="meditech/assets/7.jpeg" class="h-64 mx-4 rounded-xl object-cover shadow-2xl" alt="4" onerror="this.src='https://images.unsplash.com/photo-1581093588401-fbb62a02f120?w=400'">
-             <img src="meditech/assets/8.jpeg" class="h-64 mx-4 rounded-xl object-cover shadow-2xl" alt="4" onerror="this.src='https://images.unsplash.com/photo-1581093588401-fbb62a02f120?w=400'">
-             <img src="meditech/assets/9.jpeg" class="h-64 mx-4 rounded-xl object-cover shadow-2xl" alt="4" onerror="this.src='https://images.unsplash.com/photo-1581093588401-fbb62a02f120?w=400'">
-             <img src="meditech/assets/10.jpeg" class="h-64 mx-4 rounded-xl object-cover shadow-2xl" alt="4" onerror="this.src='https://images.unsplash.com/photo-1581093588401-fbb62a02f120?w=400'">
-             <img src="meditech/assets/11.jpeg" class="h-64 mx-4 rounded-xl object-cover shadow-2xl" alt="4" onerror="this.src='https://images.unsplash.com/photo-1581093588401-fbb62a02f120?w=400'">
-             <img src="meditech/assets/12.jpeg" class="h-64 mx-4 rounded-xl object-cover shadow-2xl" alt="4" onerror="this.src='https://images.unsplash.com/photo-1581093588401-fbb62a02f120?w=400'">
-            <!-- Loop -->
-            <img src="meditech/assets/1.png" class="h-64 mx-4 rounded-xl object-cover shadow-2xl" alt="1" onerror="this.src='https://images.unsplash.com/photo-1576091160550-2173dba999ef?w=400'">
-            <img src="meditech/assets/2.jpeg" class="h-64 mx-4 rounded-xl object-cover shadow-2xl" alt="2" onerror="this.src='https://images.unsplash.com/photo-1516321497487-e288fb19713f?w=400'">
-            <img src="meditech/assets/3.jpeg" class="h-64 mx-4 rounded-xl object-cover shadow-2xl" alt="3" onerror="this.src='https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?w=400'">
-            <img src="meditech/assets/4.jpeg" class="h-64 mx-4 rounded-xl object-cover shadow-2xl" alt="4" onerror="this.src='https://images.unsplash.com/photo-1581093588401-fbb62a02f120?w=400'">
-             <img src="meditech/assets/5.jpeg" class="h-64 mx-4 rounded-xl object-cover shadow-2xl" alt="4" onerror="this.src='https://images.unsplash.com/photo-1581093588401-fbb62a02f120?w=400'">
-             <img src="meditech/assets/6.jpeg" class="h-64 mx-4 rounded-xl object-cover shadow-2xl" alt="4" onerror="this.src='https://images.unsplash.com/photo-1581093588401-fbb62a02f120?w=400'">
-             <img src="meditech/assets/7.jpeg" class="h-64 mx-4 rounded-xl object-cover shadow-2xl" alt="4" onerror="this.src='https://images.unsplash.com/photo-1581093588401-fbb62a02f120?w=400'">
-             <img src="meditech/assets/8.jpeg" class="h-64 mx-4 rounded-xl object-cover shadow-2xl" alt="4" onerror="this.src='https://images.unsplash.com/photo-1581093588401-fbb62a02f120?w=400'">
-             <img src="meditech/assets/9.jpeg" class="h-64 mx-4 rounded-xl object-cover shadow-2xl" alt="4" onerror="this.src='https://images.unsplash.com/photo-1581093588401-fbb62a02f120?w=400'">
-             <img src="meditech/assets/10.jpeg" class="h-64 mx-4 rounded-xl object-cover shadow-2xl" alt="4" onerror="this.src='https://images.unsplash.com/photo-1581093588401-fbb62a02f120?w=400'">
-             <img src="meditech/assets/11.jpeg" class="h-64 mx-4 rounded-xl object-cover shadow-2xl" alt="4" onerror="this.src='https://images.unsplash.com/photo-1581093588401-fbb62a02f120?w=400'">
-             <img src="meditech/assets/12.jpeg" class="h-64 mx-4 rounded-xl object-cover shadow-2xl" alt="4" onerror="this.src='https://images.unsplash.com/photo-1581093588401-fbb62a02f120?w=400'">
+        <div class="slider-container">
+            <div class="infinite-slider py-10">
+                <!-- First Set -->
+                <img src="meditech/assets/1.png" class="h-64 mx-4 rounded-xl object-cover shadow-2xl" alt="1" onerror="this.src='https://images.unsplash.com/photo-1576091160550-2173dba999ef?w=400'">
+                <img src="meditech/assets/2.jpeg" class="h-64 mx-4 rounded-xl object-cover shadow-2xl" alt="2" onerror="this.src='https://images.unsplash.com/photo-1516321497487-e288fb19713f?w=400'">
+                <img src="meditech/assets/3.jpeg" class="h-64 mx-4 rounded-xl object-cover shadow-2xl" alt="3" onerror="this.src='https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?w=400'">
+                <img src="meditech/assets/4.jpeg" class="h-64 mx-4 rounded-xl object-cover shadow-2xl" alt="4" onerror="this.src='https://images.unsplash.com/photo-1581093588401-fbb62a02f120?w=400'">
+                <img src="meditech/assets/5.jpeg" class="h-64 mx-4 rounded-xl object-cover shadow-2xl" alt="5" onerror="this.src='https://images.unsplash.com/photo-1581093588401-fbb62a02f120?w=400'">
+                <img src="meditech/assets/6.jpeg" class="h-64 mx-4 rounded-xl object-cover shadow-2xl" alt="6" onerror="this.src='https://images.unsplash.com/photo-1581093588401-fbb62a02f120?w=400'">
+                <img src="meditech/assets/7.jpeg" class="h-64 mx-4 rounded-xl object-cover shadow-2xl" alt="7" onerror="this.src='https://images.unsplash.com/photo-1581093588401-fbb62a02f120?w=400'">
+                <img src="meditech/assets/8.jpeg" class="h-64 mx-4 rounded-xl object-cover shadow-2xl" alt="8" onerror="this.src='https://images.unsplash.com/photo-1581093588401-fbb62a02f120?w=400'">
+                <img src="meditech/assets/9.jpeg" class="h-64 mx-4 rounded-xl object-cover shadow-2xl" alt="9" onerror="this.src='https://images.unsplash.com/photo-1581093588401-fbb62a02f120?w=400'">
+                <img src="meditech/assets/10.jpeg" class="h-64 mx-4 rounded-xl object-cover shadow-2xl" alt="10" onerror="this.src='https://images.unsplash.com/photo-1581093588401-fbb62a02f120?w=400'">
+                <img src="meditech/assets/11.jpeg" class="h-64 mx-4 rounded-xl object-cover shadow-2xl" alt="11" onerror="this.src='https://images.unsplash.com/photo-1581093588401-fbb62a02f120?w=400'">
+                <img src="meditech/assets/12.jpeg" class="h-64 mx-4 rounded-xl object-cover shadow-2xl" alt="12" onerror="this.src='https://images.unsplash.com/photo-1581093588401-fbb62a02f120?w=400'">
+                <!-- Seamless Clone Set -->
+                <img src="meditech/assets/1.png" class="h-64 mx-4 rounded-xl object-cover shadow-2xl" alt="1" onerror="this.src='https://images.unsplash.com/photo-1576091160550-2173dba999ef?w=400'">
+                <img src="meditech/assets/2.jpeg" class="h-64 mx-4 rounded-xl object-cover shadow-2xl" alt="2" onerror="this.src='https://images.unsplash.com/photo-1516321497487-e288fb19713f?w=400'">
+                <img src="meditech/assets/3.jpeg" class="h-64 mx-4 rounded-xl object-cover shadow-2xl" alt="3" onerror="this.src='https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?w=400'">
+                <img src="meditech/assets/4.jpeg" class="h-64 mx-4 rounded-xl object-cover shadow-2xl" alt="4" onerror="this.src='https://images.unsplash.com/photo-1581093588401-fbb62a02f120?w=400'">
+                <img src="meditech/assets/5.jpeg" class="h-64 mx-4 rounded-xl object-cover shadow-2xl" alt="5" onerror="this.src='https://images.unsplash.com/photo-1581093588401-fbb62a02f120?w=400'">
+                <img src="meditech/assets/6.jpeg" class="h-64 mx-4 rounded-xl object-cover shadow-2xl" alt="6" onerror="this.src='https://images.unsplash.com/photo-1581093588401-fbb62a02f120?w=400'">
+                <img src="meditech/assets/7.jpeg" class="h-64 mx-4 rounded-xl object-cover shadow-2xl" alt="7" onerror="this.src='https://images.unsplash.com/photo-1581093588401-fbb62a02f120?w=400'">
+                <img src="meditech/assets/8.jpeg" class="h-64 mx-4 rounded-xl object-cover shadow-2xl" alt="8" onerror="this.src='https://images.unsplash.com/photo-1581093588401-fbb62a02f120?w=400'">
+                <img src="meditech/assets/9.jpeg" class="h-64 mx-4 rounded-xl object-cover shadow-2xl" alt="9" onerror="this.src='https://images.unsplash.com/photo-1581093588401-fbb62a02f120?w=400'">
+                <img src="meditech/assets/10.jpeg" class="h-64 mx-4 rounded-xl object-cover shadow-2xl" alt="10" onerror="this.src='https://images.unsplash.com/photo-1581093588401-fbb62a02f120?w=400'">
+                <img src="meditech/assets/11.jpeg" class="h-64 mx-4 rounded-xl object-cover shadow-2xl" alt="11" onerror="this.src='https://images.unsplash.com/photo-1581093588401-fbb62a02f120?w=400'">
+                <img src="meditech/assets/12.jpeg" class="h-64 mx-4 rounded-xl object-cover shadow-2xl" alt="12" onerror="this.src='https://images.unsplash.com/photo-1581093588401-fbb62a02f120?w=400'">
+            </div>
         </div>
     </section>
 
-     <!-- Footer -->
+    <!-- Footer -->
     <footer id="footer" class="bg-slate-950 pt-20 pb-10 border-t border-slate-900 mt-20 relative z-20">
         <div class="container mx-auto px-6 grid grid-cols-1 md:grid-cols-3 gap-12 mb-10">
             <div>
@@ -461,19 +474,19 @@
                     <img src="meditech/assets/logo (1).png" alt="Logo" class="h-12 w-12 rounded-full border border-theme">
                     <span class="text-2xl font-bold tracking-tighter text-theme uppercase">MEDITECH</span>
                 </div>
-                <p class="text-slate-400 text-sm">Empowering healthcare through tech.</p>
+                <p class="text-slate-400 text-sm leading-relaxed">Empowering healthcare through tech since 2018. Bridging the gap between medicine and technology.</p>
             </div>
             
             <div>
                 <h4 class="text-xl font-bold mb-6 uppercase tracking-widest text-slate-500 text-sm">Contact & Socials</h4>
                 <p class="text-white font-bold mb-2 text-sm">meditech2026bme@gmail.com</p>
-                <p class="text-slate-500 text-xs italic font-mono mb-4">+91 95731 12497 <br> +91  9381582134</p>
-                <div class="flex gap-4">
-                    <a href="https://www.linkedin.com/events/7425889592018407424/" target="_blank" class="text-slate-400 hover:text-theme transition transform hover:scale-110">
-                        <svg class="w-6 h-6 fill-current" viewBox="0 0 24 24"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/></svg>
+                <p class="text-slate-500 text-xs italic font-mono mb-6">+91 95731 12497 <br> +91 93815 82134</p>
+                <div class="flex gap-6">
+                    <a href="https://www.linkedin.com/events/7425889592018407424/" target="_blank" class="text-slate-400 hover:text-theme transition transform hover:scale-125">
+                        <svg class="w-7 h-7 fill-current" viewBox="0 0 24 24"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/></svg>
                     </a>
-                    <a href="https://www.instagram.com/meditech_ouce?igsh=MXU1N2thYWk5ZG0yZQ==" target="_blank" class="text-slate-400 hover:text-theme transition transform hover:scale-110">
-                        <svg class="w-6 h-6 fill-current" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4s1.791-4 4-4 4 1.791 4 4-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+                    <a href="https://www.instagram.com/meditech_ouce?igsh=MXU1N2thYWk5ZG0yZQ==" target="_blank" class="text-slate-400 hover:text-theme transition transform hover:scale-125">
+                        <svg class="w-7 h-7 fill-current" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4s1.791-4 4-4 4 1.791 4 4-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
                     </a>
                 </div>
             </div>
@@ -490,28 +503,18 @@
                                     <stop offset="100%" stop-color="var(--secondary-color)" stop-opacity="0" />
                                 </radialGradient>
                             </defs>
-                            <!-- Orbital Circle -->
                             <circle cx="50" cy="50" r="45" fill="url(#avatarGrad)" stroke="var(--primary-color)" stroke-width="0.5" stroke-dasharray="4 4" />
-                            
-                            <!-- Floating Data Particles -->
                             <circle class="animate-orbit" cx="50" cy="50" r="2" fill="white" style="animation-duration: 4s;" />
                             <circle class="animate-orbit" cx="50" cy="50" r="1.5" fill="var(--primary-color)" style="animation-duration: 7s; animation-direction: reverse;" />
-                            
-                            <!-- Main Body -->
                             <path d="M30 90 Q50 70 70 90" fill="var(--secondary-color)" opacity="0.6" />
-                            
-                            <!-- Head Group (Moves with mouse) -->
                             <g id="avatar-head">
                                 <circle cx="50" cy="35" r="18" fill="#1e293b" stroke="var(--primary-color)" stroke-width="2" />
-                                <!-- Eyes Group -->
                                 <g id="avatar-eyes">
                                     <circle cx="43" cy="35" r="3" fill="white" />
                                     <circle cx="57" cy="35" r="3" fill="white" />
-                                    <!-- Pupils -->
                                     <circle id="pupil-l" cx="43" cy="35" r="1.5" fill="var(--primary-color)" />
                                     <circle id="pupil-r" cx="57" cy="35" r="1.5" fill="var(--primary-color)" />
                                 </g>
-                                <!-- Coding Screen Illustration -->
                                 <rect x="35" y="42" width="30" height="20" rx="2" fill="#0f172a" stroke="var(--secondary-color)" stroke-width="1" />
                                 <g id="code-lines">
                                     <line x1="38" y1="46" x2="62" y2="46" stroke="var(--primary-color)" stroke-width="1" />
@@ -541,7 +544,7 @@
     </footer>
 
     <script>
-        /* --- Firebase Safeguard --- */
+        /* --- Firebase Setup --- */
         let db = null; let auth = null; let appId = 'meditech-2k26';
         try { if (typeof __firebase_config !== 'undefined' && __firebase_config) {
             const firebaseConfig = JSON.parse(__firebase_config);
@@ -645,12 +648,9 @@
         function openRegistration(eventName) {
             currentEvent = eventName; modalTitle.textContent = eventName + " Registration";
             modal.classList.remove('hidden'); document.body.style.overflow = 'hidden';
-            
-            // This now only handles event registration triggers
             modeSelector.style.display = 'block';
             document.querySelector('input[value="Individual"]').checked = true;
             toggleTeamSection(false); 
-            
             updateMemberInputs();
         }
         function closeModal() { modal.classList.add('hidden'); document.body.style.overflow = 'auto'; document.getElementById('registration-form').reset(); }
@@ -706,10 +706,4 @@
         modal.addEventListener('click',(e)=>{if(e.target===modal)closeModal();});
     </script>
 </body>
-
 </html>
-
-
-
-
-
