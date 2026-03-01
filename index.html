@@ -554,7 +554,7 @@
             const count = isTeam ? (parseInt(memberCountInput.value) || 1) : 1;
             let price = currentEvent === 'Visitor Pass' ? 250 : (count == 2 ? 500 : (count == 3 ? 750 : 300));
             priceDisplay.textContent = `₹${price}`;
-            document.getElementById('qr-img').src = `meditech/assets/qr-${price}.jpeg`;
+            document.getElementById('qr-img').src = `meditech/assets/qr-250.jpeg`;
         }
 
         async function handleFormSubmit(e) {
@@ -587,3 +587,4 @@
     </script>
 </body>
 </html>
+
