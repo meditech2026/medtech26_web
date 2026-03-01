@@ -15,6 +15,7 @@
         :root {
             --heading-font: 'League Spartan', sans-serif;
             --body-font: 'Inter', sans-serif;
+            /* Theme matched to uploaded image colors */
             --primary-color: #a21caf; 
             --secondary-color: #4338ca;
             --accent-glow: rgba(162, 28, 175, 0.3);
@@ -82,7 +83,7 @@
             transition: width 1s linear, background 0.5s ease;
         }
 
-        /* --- FIXED INFINITE SLIDER --- */
+        /* FIXED INFINITE SLIDER LOGIC */
         @keyframes scroll {
             0% { transform: translateX(0); }
             100% { transform: translateX(-50%); }
@@ -91,21 +92,22 @@
             overflow: hidden;
             width: 100%;
             position: relative;
-            padding: 2rem 0;
+            mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
+            -webkit-mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
         }
         .infinite-slider {
             display: flex;
             width: max-content;
-            animation: scroll 50s linear infinite;
+            animation: scroll 40s linear infinite;
         }
         .infinite-slider:hover { animation-play-state: paused; }
         .infinite-slider img {
-            height: 16rem; /* h-64 */
+            height: 16rem;
             margin: 0 1rem;
             border-radius: 0.75rem;
             object-fit: cover;
             flex-shrink: 0;
-            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.3);
         }
 
         .glass-card {
@@ -152,12 +154,12 @@
             33% { transform: translateY(-8px) rotate(2deg); }
             66% { transform: translateY(-4px) rotate(-2deg); }
         }
+        .animate-float-complex { animation: float-complex 5s ease-in-out infinite; }
+        .animate-orbit { animation: orbit 10s linear infinite; }
         @keyframes orbit {
             from { transform: rotate(0deg) translateX(35px) rotate(0deg); }
             to { transform: rotate(360deg) translateX(35px) rotate(-360deg); }
         }
-        .animate-float-complex { animation: float-complex 5s ease-in-out infinite; }
-        .animate-orbit { animation: orbit 10s linear infinite; }
     </style>
 </head>
 
@@ -189,7 +191,7 @@
 
         <div class="container mx-auto px-6 relative z-10 text-center">
             <h1 class="text-6xl md:text-8xl font-black mb-6 gradient-text uppercase tracking-tight text-white">MEDITECH 2K26</h1>
-            <p class="text-xl md:text-2xl text-slate-300 max-w-2xl mx-auto mb-8 font-medium">Clinical expertise meets technological innovation.</p>
+            <p class="text-xl md:text-2xl text-slate-300 max-w-2xl mx-auto mb-8 font-medium">Where clinical expertise meets technological innovation.</p>
 
             <div class="glass-countdown max-w-3xl mx-auto mb-10 p-6 shadow-2xl shadow-theme/10">
                 <div class="flex justify-around items-center mb-6">
@@ -199,6 +201,7 @@
                     <div class="text-center"><div id="seconds" class="countdown-number gradient-text">00</div><div class="text-[10px] uppercase tracking-widest text-slate-500 font-bold mt-1">Seconds</div></div>
                 </div>
                 <div class="flex items-center gap-4">
+                    <span class="text-[10px] font-bold text-theme whitespace-nowrap uppercase tracking-tighter">Event Progress</span>
                     <div class="progress-container flex-grow"><div id="progress-bar"></div></div>
                     <span id="percent-complete" class="text-xs font-mono text-slate-400 w-10">0%</span>
                 </div>
@@ -218,8 +221,9 @@
             <div class="h-1 w-24 bg-theme mx-auto rounded-full mb-8"></div>
         </div>
 
-        <div class="container mx-auto px-6">
-            <!-- Symposium Passes (AT TOP) -->
+        <div class="container mx-auto px-6 text-center">
+            
+            <!-- Pass Selection Section (Informational Only - AT TOP) -->
             <div id="pricing" class="max-w-5xl mx-auto py-12 px-6 glass-card rounded-3xl border border-cyan-500/20 mb-20 text-center">
                 <h2 class="text-3xl font-bold mb-8 uppercase tracking-widest text-cyan-400">Symposium Passes</h2>
                 <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
@@ -230,26 +234,28 @@
                 </div>
             </div>
 
-            <!-- Flagship Events -->
+            <!-- Event Cards Grid - Row 1 -->
             <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-12">
                 <div class="glass-card rounded-2xl overflow-hidden group hover:neon-border transition duration-500">
-                    <div class="h-48 overflow-hidden relative"><img src="meditech/assets/images.jpg" class="w-full h-full object-cover group-hover:scale-110 transition duration-500"></div>
+                    <div class="h-48 overflow-hidden relative"><img src="meditech/assets/images.jpg" class="w-full h-full object-cover group-hover:scale-110 transition duration-500" onerror="this.src='https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?w=400'"></div>
                     <div class="p-6 text-left">
                         <h3 class="text-xl font-bold mb-2 text-cyan-300 uppercase">Paper Presentation</h3>
                         <p class="text-slate-400 text-sm mb-4 leading-relaxed">Present research papers in Biomedical Engineering.</p>
                         <button onclick="openRegistration('Paper Presentation')" class="w-full bg-slate-800 hover:bg-theme hover:text-slate-950 text-cyan-400 font-bold py-2 rounded-lg transition-all border border-cyan-400/30">Register Now</button>
                     </div>
                 </div>
+
                 <div class="glass-card rounded-2xl overflow-hidden group hover:neon-border transition duration-500">
-                    <div class="h-48 overflow-hidden relative"><img src="meditech/assets/769015_971e8cc6a1f9453098f84a75563f027c~mv2.png" class="w-full h-full object-cover group-hover:scale-110 transition duration-500"></div>
+                    <div class="h-48 overflow-hidden relative"><img src="meditech/assets/769015_971e8cc6a1f9453098f84a75563f027c~mv2.png" class="w-full h-full object-cover group-hover:scale-110 transition duration-500" onerror="this.src='https://images.unsplash.com/photo-1542744173-8e7e53415bb0?w=400'"></div>
                     <div class="p-6 text-left">
                         <h3 class="text-xl font-bold mb-2 text-cyan-300 uppercase">Poster Presentation</h3>
                         <p class="text-slate-400 text-sm mb-4 leading-relaxed">Visualize your medical innovations through posters.</p>
                         <button onclick="openRegistration('Poster Presentation')" class="w-full bg-slate-800 hover:bg-theme hover:text-slate-950 text-cyan-400 font-bold py-2 rounded-lg transition-all border border-cyan-400/30">Register Now</button>
                     </div>
                 </div>
+
                 <div class="glass-card rounded-2xl overflow-hidden group hover:neon-border transition duration-500">
-                    <div class="h-48 overflow-hidden relative"><img src="meditech/assets/gettyimages-88313003-612x612.jpg" class="w-full h-full object-cover group-hover:scale-110 transition duration-500"></div>
+                    <div class="h-48 overflow-hidden relative"><img src="meditech/assets/gettyimages-88313003-612x612.jpg" class="w-full h-full object-cover group-hover:scale-110 transition duration-500" onerror="this.src='https://images.unsplash.com/photo-1581093588401-fbb62a02f120?w=400'"></div>
                     <div class="p-6 text-left">
                         <h3 class="text-xl font-bold mb-2 text-cyan-300 uppercase">Model Presentation</h3>
                         <p class="text-slate-400 text-sm mb-4 leading-relaxed">Showcase working prototypes and models.</p>
@@ -258,19 +264,43 @@
                 </div>
             </div>
 
-            <!-- Closed Events (No Status Label) -->
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 items-center mb-16">
+            <!-- Row 2 -->
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 items-center mb-16 text-left">
+                <!-- Ideation Challenge Moved Here -->
                 <div class="glass-card rounded-2xl overflow-hidden group hover:neon-border transition duration-500">
-                   <div class="h-48 overflow-hidden relative"><img src="meditech/assets/unnamed.png" class="w-full h-full object-cover"></div>
-                   <div class="p-6 text-left"><h3 class="text-xl font-bold mb-2 text-cyan-300 uppercase">Medi Quiz</h3><p class="text-slate-400 text-sm">Clinical knowledge battle.</p></div>
+                    <div class="h-48 overflow-hidden relative"><img src="meditech/assets/ideation-brainstorming-gather-new-idea-260nw-2049275030.jpg" class="w-full h-full object-cover group-hover:scale-110 transition duration-500"></div>
+                    <div class="p-6 text-left">
+                        <h3 class="text-xl font-bold mb-2 text-cyan-300 uppercase">Ideation Challenge</h3>
+                        <p class="text-slate-400 text-sm leading-relaxed">Pitch startup ideas and innovative healthcare solutions.</p>
+                    </div>
                 </div>
+
                 <div class="relative group h-full hidden md:block">
                     <div class="absolute -inset-1 gradient-theme rounded-2xl blur opacity-25"></div>
                     <img src="meditech/assets/140.png" class="relative w-full h-full rounded-2xl object-cover shadow-2xl border border-white/10">
                 </div>
+
+                <!-- Medi Quiz -->
                 <div class="glass-card rounded-2xl overflow-hidden group hover:neon-border transition duration-500">
-                    <div class="h-48 overflow-hidden relative"><img src="meditech/assets/ideation-brainstorming-gather-new-idea-260nw-2049275030.jpg" class="w-full h-full object-cover"></div>
-                    <div class="p-6 text-left"><h3 class="text-xl font-bold mb-2 text-cyan-300 uppercase">Ideation Challenge</h3><p class="text-slate-400 text-sm">Startup ideas and solutions.</p></div>
+                   <div class="h-48 overflow-hidden relative"><img src="meditech/assets/unnamed.png" class="w-full h-full object-cover group-hover:scale-110 transition duration-500"></div>
+                   <div class="p-6 text-left">
+                        <h3 class="text-xl font-bold mb-2 text-cyan-300 uppercase">Medi Quiz</h3>
+                        <p class="text-slate-400 text-sm leading-relaxed">Test clinical knowledge in a high-stakes battle.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- VISITING PASS SECTION CARD (Highlighted at bottom) -->
+            <div class="max-w-md mx-auto">
+                <div class="glass-card rounded-2xl overflow-hidden group hover:neon-border transition duration-500 border-2 border-theme/30">
+                   <div class="h-40 overflow-hidden relative bg-gradient-to-br from-theme/20 to-slate-900 flex items-center justify-center">
+                       <span class="text-4xl font-black text-theme uppercase tracking-tighter">Entry Pass</span>
+                   </div>
+                   <div class="p-6 text-center">
+                        <h3 class="text-xl font-bold mb-2 text-white uppercase">Only Visiting Pass</h3>
+                        <p class="text-slate-400 text-sm mb-6 leading-relaxed">General entry to stalls, exhibits, and Tech Talks.</p>
+                        <button onclick="openRegistration('Visitor Pass')" class="w-full bg-theme text-slate-950 font-black py-3 rounded-lg transition-all shadow-xl hover:brightness-110">Get Pass (₹250)</button>
+                   </div>
                 </div>
             </div>
         </div>
@@ -302,13 +332,13 @@
 
                     <div class="space-y-6">
                         <div class="p-4 bg-slate-800/30 rounded-2xl border border-slate-700 flex flex-col items-center">
-                            <div id="payment-amt-text" class="text-4xl font-black text-theme mb-4 tracking-tighter">₹300</div>
-                            <img id="qr-img" src="meditech/assets/qr-300.jpeg" alt="QR" class="w-48 h-48 bg-white p-2 rounded-lg mb-4 object-contain shadow-xl" onerror="this.src='https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=upi://pay?pa=meditech2026@upi&pn=Meditech&am=300'">
+                            <div id="payment-amt-text" class="text-4xl font-black text-theme mb-4">₹300</div>
+                            <img id="qr-img" src="meditech/assets/qr-300.jpeg" alt="QR" class="w-40 h-40 bg-white p-2 rounded-lg mb-4 object-contain shadow-xl" onerror="this.src='https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=upi://pay?pa=meditech2026@upi&pn=Meditech&am=300'">
                             <p class="text-[9px] text-slate-500 text-center uppercase mb-4 tracking-widest font-bold">Scan QR & Upload Screenshot</p>
-                            <input type="text" id="utr" name="utr" required placeholder="Transaction ID (UTR)" class="w-full bg-slate-900 border border-slate-700 rounded-lg px-3 py-2 text-sm text-white input-focus mb-3">
+                            <input type="text" id="utr" name="utr" required placeholder="UTR Number" class="w-full bg-slate-900 border border-slate-700 rounded-lg px-3 py-2 text-sm text-white input-focus mb-3">
                             <div class="w-full relative group">
                                 <input type="file" id="screenshot" name="screenshot" required accept="image/*" class="absolute inset-0 opacity-0 cursor-pointer z-10" onchange="handleImageSelect(event)">
-                                <div id="dropzone" class="w-full bg-slate-800 border-2 border-dashed border-slate-700 rounded-lg p-3 text-center text-[10px] text-slate-400 group-hover:border-theme transition cursor-pointer"><span id="upload-status">Click to upload screenshot</span></div>
+                                <div class="w-full bg-slate-800 border-2 border-dashed border-slate-700 rounded-lg p-3 text-center text-[10px] text-slate-400 group-hover:border-theme transition cursor-pointer">Click to upload screenshot</div>
                                 <img id="image-preview" alt="Preview">
                                 <p id="upload-message" class="text-[10px] text-green-400 font-bold mt-2 uppercase hidden">✓ Preview Ready</p>
                             </div>
@@ -316,32 +346,44 @@
                     </div>
                 </form>
             </div>
-            <div class="p-6 border-t border-slate-800 bg-slate-900/50 text-right"><button type="submit" id="submit-btn" form="registration-form" class="bg-theme hover:brightness-110 text-slate-950 font-black px-10 py-4 rounded-xl shadow-xl shadow-theme/20 uppercase tracking-widest text-sm">Submit Registration</button></div>
+            <div class="p-6 border-t border-slate-800 bg-slate-900/50 text-right"><button type="submit" id="submit-btn" form="registration-form" class="bg-theme text-slate-950 font-black px-10 py-4 rounded-xl shadow-xl shadow-theme/20 uppercase tracking-widest text-sm">Submit Registration</button></div>
         </div>
     </div>
 
-    <!-- Gallery Section (Full 12 Images with Fixed Infinite Loop) -->
+    <!-- Gallery Section (Correctly Sequenced Infinite Loop) -->
     <section id="previous" class="py-24 overflow-hidden">
         <div class="container mx-auto px-6 text-center mb-16">
             <h2 class="text-4xl font-bold mb-4 uppercase text-white">Gallery of Excellence</h2>
             <p class="text-slate-400 italic font-medium">Moments that defined our journey since inception.</p>
         </div>
         <div class="slider-container">
-            <div class="infinite-slider py-10">
-                <!-- 1 to 12 -->
-                <img src="meditech/assets/1.png" alt="G1"> <img src="meditech/assets/2.jpeg" alt="G2">
-                <img src="meditech/assets/3.jpeg" alt="G3"> <img src="meditech/assets/4.jpeg" alt="G4">
-                <img src="meditech/assets/5.jpeg" alt="G5"> <img src="meditech/assets/6.jpeg" alt="G6">
-                <img src="meditech/assets/7.jpeg" alt="G7"> <img src="meditech/assets/8.jpeg" alt="G8">
-                <img src="meditech/assets/9.jpeg" alt="G9"> <img src="meditech/assets/10.jpeg" alt="G10">
-                <img src="meditech/assets/11.jpeg" alt="G11"> <img src="meditech/assets/12.jpeg" alt="G12">
-                <!-- DUPLICATE SET FOR LOOP -->
-                <img src="meditech/assets/1.png" alt="G1"> <img src="meditech/assets/2.jpeg" alt="G2">
-                <img src="meditech/assets/3.jpeg" alt="G3"> <img src="meditech/assets/4.jpeg" alt="G4">
-                <img src="meditech/assets/5.jpeg" alt="G5"> <img src="meditech/assets/6.jpeg" alt="G6">
-                <img src="meditech/assets/7.jpeg" alt="G7"> <img src="meditech/assets/8.jpeg" alt="G8">
-                <img src="meditech/assets/9.jpeg" alt="G9"> <img src="meditech/assets/10.jpeg" alt="G10">
-                <img src="meditech/assets/11.jpeg" alt="G11"> <img src="meditech/assets/12.jpeg" alt="G12">
+            <div class="infinite-slider">
+                <!-- Group 1 -->
+                <img src="WhatsApp Image 2026-03-01 at 01.41.17.jpeg" alt="G1">
+                <img src="meditech/assets/2.jpeg" alt="G2">
+                <img src="meditech/assets/3.jpeg" alt="G3">
+                <img src="meditech/assets/4.jpeg" alt="G4">
+                <img src="meditech/assets/5.jpeg" alt="G5">
+                <img src="meditech/assets/6.jpeg" alt="G6">
+                <img src="meditech/assets/7.png" alt="G7">
+                <img src="meditech/assets/8.png" alt="G8">
+                <img src="meditech/assets/9.png" alt="G9">
+                <img src="meditech/assets/10.png" alt="G10">
+                <img src="meditech/assets/11.png" alt="G11">
+                <img src="meditech/assets/12.png" alt="G12">
+                <!-- Group 2 (Clone for seamless scroll) -->
+                <img src="WhatsApp Image 2026-03-01 at 01.41.17.jpeg" alt="G1">
+                <img src="meditech/assets/2.jpeg" alt="G2">
+                <img src="meditech/assets/3.jpeg" alt="G3">
+                <img src="meditech/assets/4.jpeg" alt="G4">
+                <img src="meditech/assets/5.jpeg" alt="G5">
+                <img src="meditech/assets/6.jpeg" alt="G6">
+                <img src="meditech/assets/7.png" alt="G7">
+                <img src="meditech/assets/8.png" alt="G8">
+                <img src="meditech/assets/9.png" alt="G9">
+                <img src="meditech/assets/10.png" alt="G10">
+                <img src="meditech/assets/11.png" alt="G11">
+                <img src="meditech/assets/12.png" alt="G12">
             </div>
         </div>
     </section>
@@ -351,7 +393,7 @@
         <div class="container mx-auto px-6 grid grid-cols-1 md:grid-cols-3 gap-12 mb-10">
             <div>
                 <div class="flex items-center space-x-3 mb-6"><img src="meditech/assets/logo (1).png" class="h-12 w-12 rounded-full border border-theme"><span class="text-2xl font-bold tracking-tighter text-theme uppercase">MEDITECH</span></div>
-                <p class="text-slate-400 text-sm leading-relaxed">Empowering healthcare through technology.</p>
+                <p class="text-slate-400 text-sm leading-relaxed">Empowering healthcare through tech since 2018.</p>
             </div>
             <div>
                 <h4 class="text-xl font-bold mb-6 uppercase tracking-widest text-slate-500 text-sm">Contact & Socials</h4>
@@ -383,7 +425,7 @@
     </footer>
 
     <script>
-        /* --- Firebase Safeguard --- */
+        /* --- Firebase --- */
         let db = null; let auth = null; let appId = 'meditech-2k26';
         try { if (typeof __firebase_config !== 'undefined' && __firebase_config) {
             const firebaseConfig = JSON.parse(__firebase_config);
@@ -391,7 +433,7 @@
             db = firebase.firestore(); auth = firebase.auth(); auth.signInAnonymously();
         } } catch (e) {}
 
-        /* --- Particle System --- */
+        /* --- Particles --- */
         const canvas = document.getElementById('particle-canvas');
         const ctx = canvas.getContext('2d');
         let particles = [];
@@ -473,7 +515,7 @@
             }; reader.readAsDataURL(file);
         }
 
-        /* --- Registration Logic --- */
+        /* --- Registration --- */
         const scriptURL = 'https://script.google.com/macros/s/AKfycbxMRujnsGjZomMMa0uv4DmH6nf-iDp0yaai2l_Qjk-uh6Kl4N2IB-TXXNEgCUA2DlOq/exec';
         const modal = document.getElementById('form-modal');
         const modalTitle = document.getElementById('modal-title');
@@ -487,9 +529,8 @@
         function openRegistration(eventName) {
             currentEvent = eventName; modalTitle.textContent = eventName + " Registration";
             modal.classList.remove('hidden'); document.body.style.overflow = 'hidden';
-            modeSelector.style.display = 'block';
-            document.querySelector('input[value="Individual"]').checked = true;
-            toggleTeamSection(false); 
+            if (eventName === 'Visitor Pass') { modeSelector.style.display = 'none'; toggleTeamSection(false); }
+            else { modeSelector.style.display = 'block'; document.querySelector('input[value="Individual"]').checked = true; toggleTeamSection(false); }
             updateMemberInputs();
         }
         function closeModal() { modal.classList.add('hidden'); document.body.style.overflow = 'auto'; document.getElementById('registration-form').reset(); }
@@ -511,27 +552,20 @@
         function updatePricing() {
             const isTeam = document.querySelector('input[name="mode"]:checked')?.value === "Team";
             const count = isTeam ? (parseInt(memberCountInput.value) || 1) : 1;
-
-            let price = 300;
-            let qrImgPath = "meditech/assets/qr-300.jpeg";
-
-            if (count === 2) { price = 500; qrImgPath = "meditech/assets/qr-500.jpeg"; }
-            else if (count === 3) { price = 750; qrImgPath = "meditech/assets/qr-750.jpeg"; }
-
+            let price = currentEvent === 'Visitor Pass' ? 250 : (count == 2 ? 500 : (count == 3 ? 750 : 300));
             priceDisplay.textContent = `₹${price}`;
-            document.getElementById('qr-img').src = qrImgPath;
+            document.getElementById('qr-img').src = `meditech/assets/qr-${price}.jpeg`;
         }
 
         async function handleFormSubmit(e) {
             e.preventDefault(); const btn = document.getElementById('submit-btn');
-            btn.disabled = true; btn.innerText = "Syncing Data...";
+            btn.disabled = true; btn.innerText = "Syncing...";
             const formData = new FormData(e.target);
             const members = []; for(let i=1; i<=3; i++) { if(formData.get(`member_${i}`)) members.push(formData.get(`member_${i}`)); }
             const registrationData = { event: currentEvent, members: members, whatsapp: formData.get('whatsapp'), utr: formData.get('utr'), amount: priceDisplay.textContent, screenshot: document.getElementById('image-preview').src };
             try {
                 await fetch(scriptURL, { method: 'POST', mode: 'no-cors', body: JSON.stringify(registrationData) });
-                alert('Registration Successful! Data recorded.');
-                closeModal();
+                alert('Registration Successful!'); closeModal();
             } catch (err) { alert('Error submitting form.'); }
             finally { btn.disabled = false; btn.innerText = "Submit Registration"; }
         }
@@ -553,4 +587,3 @@
     </script>
 </body>
 </html>
-
